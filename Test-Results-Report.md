@@ -17,4 +17,12 @@ The failures are expected for the intentionally buggy PR implementation; the tes
 
 ## Android integration tests
 
-The 10 instrumentation tests compile successfully with `compileDebugAndroidTestKotlin`. They cover displayed labels, row reuse, and the active → completed → active transition for an undated task. The latter checks the stale `CLEAR` bug from page 68. CI results are pending.
+The 10 instrumentation tests compile successfully with `compileDebugAndroidTestKotlin`. GitHub Actions run `38565161202` executed these tests plus one existing instrumentation test: 8 passed and 3 failed. All three failures match the intended due-date defects described on Tutorial 07 page 68:
+
+- `setDueDateLabel_reusedRowWithoutDueDate_clearsStaleText`: expected an empty label, got `D-1`. A recycled row keeps the previous due-date text when the next task has no due date.
+- `setDueDateLabel_dueIn32DaysAcrossMonth_displaysD32`: expected `D-32`, got `D-1`. The date-distance calculation keeps only the day component across a month boundary.
+- `setDueDateLabel_undatedTaskCompletedThenReactivated_clearsStaleClear`: expected an empty label after reactivation, got `CLEAR`. The binding returns early for an empty label and leaves the prior completed-state text visible.
+
+## CI summary
+
+GitHub Actions run [38565161202](https://github.com/jwcho24/SWPP-2026-Testing-Practice/actions/runs/38565161202) completed with the expected failing status: unit tests ran 13 tests (11 passed, 2 failed) and integration tests ran 11 tests (8 passed, 3 failed). The five failing assertions correspond to the two bugs under test; unrelated existing tests passed. No production bug code was changed.
