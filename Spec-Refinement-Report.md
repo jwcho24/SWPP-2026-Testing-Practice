@@ -19,7 +19,7 @@ The refined specs follow the due-date feature intent in Tutorial 07, page 53, an
 - Required the label view to be undisplayed when an active task has no due date. This captures “no label” without requiring a specific Android visibility constant.
 - Added row-reuse and completion-toggle cases. They catch the page 68 stale-label bug where `CLEAR` remains after an undated completed task is activated again.
 - Required the adapter to use the latest bound task state and the date-label contract from `DueDateUtils.spec.md`.
-- Tagged view-binding checks as `[Integration]`, because they verify the Android `TextView` rendered for a task row.
+- Tagged binding-adapter checks as `[Integration]`, because they exercise an Android `TextView` on the instrumentation runtime rather than a JVM-only value calculation.
 - Moved the valid active/no-due-date behavior into success cases and left error cases as `None`. Linked each successful and edge behavior to the corresponding instrumentation test.
 
 ## Decisions to confirm during implementation

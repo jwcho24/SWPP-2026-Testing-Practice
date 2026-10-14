@@ -5,7 +5,7 @@
 **Intent**: Bind a task's due-date label to its task-row `TextView`. The text reflects the task's due date and completion state; when the computed label is empty, the text is cleared so no stale due-date label remains after a row is reused.
 
 **Pre-conditions**
-- The target `TextView` belongs to a task row and is updated on the UI thread.
+- The target `TextView` is supplied to the binding adapter and is updated on the UI thread.
 - The task has either no due date or a valid calendar date, and has a valid completion state.
 - The label text follows `dueDateLabel(...)` in `DueDateUtils.spec.md`.
 - Each bind uses the latest task state, including after completion is toggled.
@@ -37,4 +37,4 @@
     - Tested by `TasksListBindingsTest.setDueDateLabel_dueIn32DaysAcrossMonth_displaysD32`.
 
 **Undefined behavior** (optional)
-- Behavior for values outside the valid calendar-date domain or a view that is not a task-row label is undefined.
+- Behavior for values outside the valid calendar-date domain is undefined.
