@@ -90,15 +90,6 @@ class DueDateUtilsTest {
     }
 
     @Test
-    fun dueDateLabel_activeWithoutDueDate_doesNotThrow() {
-        // GIVEN - An active task with no due date and a valid reference date
-        val today = LocalDate.of(2026, 10, 14)
-
-        // WHEN / THEN - Calculating its label does not throw and returns the no-date result
-        assertEquals("", dueDateLabel(null, today, isCompleted = false))
-    }
-
-    @Test
     fun dueDateLabel_adjacentDates_returnsBoundaryLabels() {
         // GIVEN - Today is 2026-10-14
         val today = LocalDate.of(2026, 10, 14)

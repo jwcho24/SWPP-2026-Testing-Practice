@@ -11,6 +11,7 @@ The refined specs follow the due-date feature intent in Tutorial 07, page 53, an
 - Specified the date utility's labels exactly: `D-N`, `D-Day`, and `D+N`; its active/no-date result is exactly `""` to represent no label.
 - Matched the target function's contract: it receives completion state and returns `CLEAR` for completed tasks with or without a due date.
 - Tagged direct date-label checks as `[Unit]`, because the function's contract is a value calculation.
+- Moved the valid no-due-date behavior into the success cases and left error cases as `None`; the function accepts all supported inputs. Removed the duplicate no-due-date Tip/test and linked each remaining case to its test with `Tested by`.
 
 ## `TasksListBindings.spec.md`
 
@@ -19,6 +20,7 @@ The refined specs follow the due-date feature intent in Tutorial 07, page 53, an
 - Added row-reuse and completion-toggle cases. They catch the page 68 stale-label bug where `CLEAR` remains after an undated completed task is activated again.
 - Required the adapter to use the latest bound task state and the date-label contract from `DueDateUtils.spec.md`.
 - Tagged view-binding checks as `[Integration]`, because they verify the Android `TextView` rendered for a task row.
+- Moved the valid active/no-due-date behavior into success cases and left error cases as `None`. Linked each successful and edge behavior to the corresponding instrumentation test.
 
 ## Decisions to confirm during implementation
 
